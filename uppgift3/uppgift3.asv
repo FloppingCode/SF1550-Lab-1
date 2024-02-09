@@ -40,9 +40,43 @@ for i = 1:4
 end
 loglog(N,t,'ro',LineStyle='--')
 %% c)
-load eiffel1.mat
+load eiffel2.mat
 [jmin, jmax] = kanslighet(A,1)
-trussplot(xnod,ynod,BARS)
+trussplot(xnod,ynod,bars)
+hold on
+plot(xnod(jmax),ynod(jmax),"r*")
+hold on
+plot(xnod(jmin),ynod(jmin),"bo")
+%% d)
+a = zeros(4,4)
+for i = 1:2
+    if i == 1
+        load eiffel1.mat
+    elseif i == 2
+        load eiffel2.mat
+    elseif i == 3
+        load eiffel3.mat
+    else
+        load eiffel4.mat
+    end
+    t = zeros(4,1)
+    tic;
+    [jmin, jmax] = kanslighet(A,1)
+    t(1) = toc
+    tic
+    [jmin, jmax] = kanslighet(A,2)
+    t(2) = toc
+    A = sparse(A);
+    tic;
+    [jmin, jmax] = kanslighet(A,1)
+    t(3) = toc
+    tic;
+    [jmin, jmax] = kanslighet(A,1)
+    t(4) = toc
+    a(1)
+    a(i) = t
+end
+a
 % Tidtabell
 % Skapa en 4x4-matris T som innehåller beräkningstiderna.
 % Raderna ska motsvara de olika modellerna (eiffel1-eiffel4) och
@@ -69,22 +103,28 @@ function [jmin,jmax]=kanslighet(A,metod)
 % kod...
     jmin = 0;
     jmax = 0;
-    if metod == 1
-        ymax = 0;
-        ymin = 10^16;
-        n = size(A)
-        for j = 1:n(1)/2
-            b = zeros(n(1),1); b(2*j) = -1; % vertical kraft vid nod j
+    smax = 0;
+    smin = 10^16;
+    n = size(A)
+    if metod == 2
+      [L,U] = lu(A);
+    end
+    for j = 1:n(1)/2
+        b = zeros(n(1),1); b(2*j) = -1; % vertical kraft vid nod j
+        if metod == 1
             x = A\b; % känsligheten
-            y = norm(x);
-            if y >= ymax
-                ymax = y;
-                jmax = j
-            end
-            if y <= ymin % retunerar alltid jmin = 1 vilket är lite sus
-                ymin = y;
-                jmin = j
-            end
+        elseif metod == 2
+            y = L\b;
+            x = U\y;
+        end
+        s = norm(x);
+        if s >= smax
+           smax = s;
+           jmax = j;
+        end
+        if s <= smin % retunerar alltid jmin = 1 vilket är lite sus
+           smin = s;
+           jmin = j;
         end
     end
 end
