@@ -48,7 +48,7 @@ plot(xnod(jmax),ynod(jmax),"r*")
 hold on
 plot(xnod(jmin),ynod(jmin),"bo")
 %% d)
-a = zeros(4,4)
+T = zeros(4,4)
 for i = 1:4
     if i == 1
         load eiffel1.mat
@@ -71,11 +71,11 @@ for i = 1:4
     [jmin, jmax] = kanslighet(A,1)
     t(3) = toc
     tic;
-    [jmin, jmax] = kanslighet(A,1)
+    [jmin, jmax] = kanslighet(A,2)
     t(4) = toc
-    a(i,:) = t
+    T(i,:) = t
 end
-a
+T
 % Tidtabell
 % Skapa en 4x4-matris T som innehåller beräkningstiderna.
 % Raderna ska motsvara de olika modellerna (eiffel1-eiffel4) och

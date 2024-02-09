@@ -49,7 +49,7 @@ hold on
 plot(xnod(jmin),ynod(jmin),"bo")
 %% d)
 a = zeros(4,4)
-for i = 1:2
+for i = 1:4
     if i == 1
         load eiffel1.mat
     elseif i == 2
@@ -73,8 +73,7 @@ for i = 1:2
     tic;
     [jmin, jmax] = kanslighet(A,1)
     t(4) = toc
-    a(1)
-    a(i) = t
+    a(i,:) = t
 end
 a
 % Tidtabell
@@ -120,7 +119,7 @@ function [jmin,jmax]=kanslighet(A,metod)
         s = norm(x);
         if s >= smax
            smax = s;
-           jmax = j;
+           jmax = j
         end
         if s <= smin % retunerar alltid jmin = 1 vilket är lite sus
            smin = s;
