@@ -12,12 +12,12 @@ disp(['(x2, y2) = (' num2str(solution(3)) ', ' num2str(solution(4)) ')']);
 
 
 % Plottning av cirklarna och snöret
-ang = linspace(0, 2*pi, 100);
-circleA_x = a(1) + ra * cos(ang);
-circleA_y = a(2) + ra * sin(ang);
+v = linspace(0, 2*pi, 100);
+circleA_x = a(1) + ra * cos(v);
+circleA_y = a(2) + ra * sin(v);
 
-circleB_x = b(1) + rb * cos(ang);
-circleB_y = b(2) + rb * sin(ang);
+circleB_x = b(1) + rb * cos(v);
+circleB_y = b(2) + rb * sin(v);
 
 line_x = [solution(1), solution(3)];
 line_y = [solution(2), solution(4)];
@@ -31,7 +31,7 @@ scatter(solution(1), solution(2), 'b', 'filled');
 scatter(solution(3), solution(4), 'r', 'filled');
 xlabel('x');
 ylabel('y');
-legend('Cirkel A', 'Cirkel B', 'Snöre', 'Lösning 1', 'Lösning 2');
+legend('Cirkel A', 'Cirkel B', 'Snöre', 'x1', 'x2');
 axis equal;
 grid on;
 hold off;
