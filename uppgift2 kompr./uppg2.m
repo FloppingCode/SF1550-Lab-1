@@ -38,7 +38,7 @@ ra = 1.0;
 rb = 1.2;
 rc = 1.7;
 
-uncertainty(ra, rb, rc, a, b, c)
+kanslighet(ra, rb, rc, a, b, c)
 %% Funktioner
 
 function [L, X] = langd(ra, rb, rc, a, b, c)
@@ -171,7 +171,7 @@ function plot_2b(Xrot, a, b, ra, rb)
 end
 
 
-function uncertainty(ra, rb, rc, a, b, c)
+function kanslighet(ra, rb, rc, a, b, c)
     delta = 0.01;
     [L, X] = langd(ra, rb, rc, a, b, c);
     params = {ra, rb, rc, a, b, c};
