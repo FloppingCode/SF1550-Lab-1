@@ -179,10 +179,10 @@ function kanslighet(ra, rb, rc, a, b, c)
     for i = 1:numel(params)
         perturbed_params = params;
 
-        if isscalar(parameters{i})
+        if isscalar(params{i})
             perturbed_params{i} = perturbed_params{i} + delta;
         else
-            perturbed_params{i} = perturbed_params{i} + delta * ones(size(parameters{i}));
+            perturbed_params{i} = perturbed_params{i} + delta * ones(size(params{i}));
         end
 
         [perturbed_L, ~] = langd(perturbed_params{1}, perturbed_params{2}, perturbed_params{3}, perturbed_params{4}, perturbed_params{5}, perturbed_params{6});
