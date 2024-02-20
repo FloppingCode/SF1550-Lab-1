@@ -8,10 +8,11 @@ b=zeros(2*261,1); b(1*2-1)=1;
 x = A\b;
 xbel = xnod + x(1:2:end); ybel = ynod + x(2:2:end);
 hold on
-trussplot(xbel,ybel,bars,"c")
+trussplot(xbel,ybel,bars,"c-")
+hold on
 plot(xbel(1),ybel(1),'r*')
-hold off
 %% b)
+figure(2)
 t = [];
 N = [];
 for i = 1:4
@@ -28,7 +29,7 @@ for i = 1:4
     n = size(A);
     N = [N n(1)];
     timesum = 0;
-    for sample = 1:100
+    for sample = 1:10
         b = randn(N(end),1);
         tic;
         x = A\b;
@@ -104,7 +105,7 @@ function [jmin,jmax]=kanslighet(A,metod)
     jmax = 0;
     smax = 0;
     smin = 10^16;
-    n = size(A)
+    n = size(A);
     if metod == 2
       [L,U] = lu(A);
     end
