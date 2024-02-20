@@ -36,7 +36,7 @@ for i = 1:4
         temp = toc;
         timesum = timesum+temp;
     end
-    timesum/100;
+    timesum/10;
     t = [t timesum];
 end
 loglog(N,t,'ro',LineStyle='--')
